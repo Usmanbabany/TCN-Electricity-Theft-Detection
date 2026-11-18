@@ -1,0 +1,9 @@
+# Initial environment outline; pin tested versions after validating the notebooks.
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+tensorflow
+imbalanced-learn
+jupyter
