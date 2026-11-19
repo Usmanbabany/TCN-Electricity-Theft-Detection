@@ -75,25 +75,21 @@ The sequence helper also slides across rows of the customer table, rather than t
 
 **Assessment:** development code requiring correction; it must not be described as the final published implementation.
 
-## 4. Dataset availability
+## 4. Dataset availability and audit
 
-One code version references:
+The author has now supplied a file named `Dataset_small.csv`, matching the filename referenced in the pasted development code. Its contents are summarized in [DATASET_AUDIT.md](DATASET_AUDIT.md).
 
-```text
-Dataset_small.csv
-```
+The uploaded file has 141 raw rows and 30 columns. One first row has no customer ID or target label and contains the sequence 1 through 28 in the consumption cells. Excluding that malformed row leaves 140 labelled customers and 28 daily consumption columns (1–28 January 2015).
 
-That file is not currently available among the files supplied for review.
+All 140 valid customer records have `FLAG=1`; there are no `FLAG=0` records. The consumption matrix also has 1,275 missing readings out of 3,920 (32.53%), with 48 customers having at least one missing reading and one observed value of -0.01.
 
-Other notebooks reference:
+This file cannot support supervised binary theft-versus-normal training by itself. SMOTE cannot create a missing original class, and two-class cross-validation and ROC-AUC cannot be validly evaluated on a one-class dataset. Do not duplicate or relabel samples to force a binary experiment.
 
-```text
-Electricity_Theft_Data.csv
-```
+The uploaded file's dimensions (140 customers × 28 daily readings after excluding the malformed row) also differ from the saved notebook's reported input (9,957 rows × 365 consumption columns plus identifiers/label). Its relationship to the final IEEE experiment data therefore remains unconfirmed.
 
-A CSV with that name is available in the user's file library, but it has been set aside because it has not been confirmed as the exact dataset used in the IEEE experiments. It must not be substituted and described as the original paper dataset without confirmation.
+The separate `Electricity_Theft_Data.csv` file remains set aside until its dataset provenance is established.
 
-**Current decision: no new model training has been performed.** Training on an unconfirmed dataset could produce numbers that look plausible but would not establish reproduction of the paper's experiment.
+**Current decision: no new supervised model training has been performed.** This is intentional: training a binary classifier on the one-class extract would not be methodologically valid and would not reproduce the published experiment.
 
 ## 5. Why a new training run may produce different results
 
@@ -142,7 +138,7 @@ Where the original setting cannot be recovered, any new choice must be documente
 
 - Published-paper results: retained as reported historical results.
 - Author-provided notebook copies: reviewed; none of the currently available saved copies establishes the complete final run.
-- Exact original dataset: not currently confirmed/available.
+- Uploaded `Dataset_small.csv`: audited; 140 valid rows, all `FLAG=1`, 28 daily readings and 32.53% missing consumption cells; insufficient for supervised binary classification.
 - New training run: not performed.
 - Current GitHub baseline script: separate from the published experiment.
 - Next technical step: obtain or identify the exact data used for the paper and then build a versioned rerun without replacing the published results.
