@@ -66,25 +66,35 @@ The paper reports using:
 - F1-score
 - Area under the ROC curve (ROC-AUC)
 
-## 8. Author-provided experiment notebooks
+## 8. Review of author-provided notebooks
 
-The author has supplied Colab notebooks identified as the notebooks used during the research. They are being reviewed as original project artifacts before inclusion in the public repository.
+The author supplied multiple Colab notebook copies. They are useful development artifacts, but the saved versions available for review do not establish a complete successful execution that can be matched to the published result tables.
 
-The saved copies currently available for review contain working-stage code and do not all show a complete successful end-to-end run matching the reported result tables. They must therefore be reconciled with the final executed experiment notebook(s), saved outputs and configuration before being released as a verified reproduction package. This qualification concerns the current saved notebook copies and repository packaging; it does not change the author's account that the reported results came from the original research experiments.
+The key findings are documented in [RETRAINING_PROTOCOL.md](RETRAINING_PROTOCOL.md). In summary:
 
-## 9. Reproduction status
+- The saved K-fold/SMOTE notebook uses five folds rather than the ten reported in the paper, references `StratifiedKFold` without importing it, and does not proceed to a complete model-training and evaluation cycle in the saved code.
+- The saved TensorFlow notebook has preprocessing warnings, fits the scaler before the train/test split, uses two-fold non-stratified K-fold code, and records NaN training loss. Its saved classification report evaluates only one class.
+- The saved PyTorch prototype uses the customer identifier as a signal, has inconsistent sequence/label construction, and does not contain saved experimental results.
+- Several files named as separate TCN notebook copies are byte-identical duplicates.
+
+These findings concern the copies currently available for review. They do not change the author's account that the paper's reported results came from the original research experiments.
+
+## 9. Reproduction and retraining status
 
 **Research result provenance:** The author confirms that the results reported in the IEEE paper were obtained through the original research experiments.
 
-**GitHub release status:** The complete experiment has not yet been cleaned, packaged and rerun end-to-end from this repository. The current `src/train_tcn.py` file is a separate baseline, not the original full experiment implementation.
+**GitHub release status:** The complete original experiment has not yet been recovered, cleaned, packaged and rerun end-to-end from this repository. The current `src/train_tcn.py` file is a separate baseline, not the original full experiment implementation.
 
-A reproducible release requires reconciling the original notebooks, confirming the dataset and preprocessing used for the published experiments, recovering the final configuration and preserving the relevant execution outputs. Missing implementation details must not be guessed.
+A new training run may yield different results because of changes in the dataset, preprocessing, data split, random initialization, augmentation, SMOTE sampling, software versions and hardware execution. A future run will therefore be recorded as a separate rerun/re-analysis and will not replace the historical results reported in the paper.
 
-## 10. Known reporting ambiguities to resolve
+The exact original dataset is not currently available for a confirmed rerun. A code version references `Dataset_small.csv`, which is not among the files currently available for review. Another CSV was set aside because it has not been confirmed as the dataset used for the paper.
+
+A reproducible release requires the correct dataset, reconciliation of the original notebooks, recovery of missing configuration details and preservation of outputs. No missing settings will be guessed.
+
+## 10. Documentation limitations
 
 - The paper's dataset description is not sufficiently detailed to identify and independently reconstruct the exact experiment dataset.
 - The paper's abstract includes large-scale benchmark and pilot-impact statements that are not accompanied by enough methodological detail in the paper to reproduce those claims.
-- The ROC figure should be checked against the numerical AUC values stated in the results text (0.92 and 0.98) before any future reproduction or comparison.
-- The text refers to a later ROC figure number that does not match the four-figure sequence shown in the paper.
+- The paper does not report every implementation setting required for an exact independent rerun.
 
-These points are recorded transparently rather than silently corrected or presented as verified facts.
+These limitations are recorded transparently rather than silently corrected or presented as verified facts.
