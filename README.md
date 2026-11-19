@@ -42,7 +42,7 @@ The paper also reports a separate noise-augmentation comparison: 96% accuracy an
 
 The author has supplied Colab notebooks used during the research for review. The currently available saved copies are incomplete or contain execution and evaluation issues. Their code, dataset provenance and final run configuration must be reconciled before a notebook can be described as the exact implementation that generated the paper's result tables.
 
-See the [notebook audit and retraining protocol](docs/NOTEBOOK_AUDIT.md) for the findings and next steps.
+See the [notebook audit and retraining protocol](docs/RETRAINING_PROTOCOL.md) for the findings and next steps.
 
 ## Repository structure
 
@@ -53,11 +53,11 @@ See the [notebook audit and retraining protocol](docs/NOTEBOOK_AUDIT.md) for the
 
 ## Data and reproducibility
 
-The exact dataset file used for the published experiment has not yet been confirmed among the available files. A file named `Dataset_small.csv` is referenced in one code version but is not currently available for review. Another CSV has been set aside because it has not been confirmed as the paper's dataset.
+The author has now supplied `Dataset_small.csv`, a file whose name matches the path in the development code. Its contents have been audited, but its identity as the final IEEE experimental dataset has not been established. The uploaded file contains 140 labelled customers, all with `FLAG=1`, and 28 daily consumption columns; it cannot support supervised binary classification by itself. See [the dataset audit](docs/DATASET_AUDIT.md).
 
 The current `src/train_tcn.py` file is a separate baseline implementation. It is **not** the original experiment implementation and does not implement the paper's complete Gaussian-noise, SMOTE, stratified 10-fold and Grid Search pipeline. Therefore, the published results above must not be described as outputs of this current baseline script.
 
-A new training run may produce different metrics. Any future rerun will be recorded separately and will not overwrite the historical values reported in the IEEE paper. See [the notebook audit and retraining protocol](docs/NOTEBOOK_AUDIT.md).
+A new training run may produce different metrics. Any future rerun will be recorded separately and will not overwrite the historical values reported in the IEEE paper. See [the notebook audit and retraining protocol](docs/RETRAINING_PROTOCOL.md) and [dataset audit](docs/DATASET_AUDIT.md).
 
 Do not commit confidential, licensed or identifiable customer-level electricity data.
 
