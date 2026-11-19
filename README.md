@@ -40,20 +40,26 @@ The paper also reports a separate noise-augmentation comparison: 96% accuracy an
 
 ## Original experiment notebooks
 
-The author has supplied the Colab notebooks used during the research for review and repository preparation. These notebooks are being checked and organized before any are presented as a clean, reproducible release. The saved copies currently available for review include working-stage code and execution issues that need to be reconciled with the final experiment record.
+The author has supplied Colab notebooks used during the research for review. The currently available saved copies are incomplete or contain execution and evaluation issues. Their code, dataset provenance and final run configuration must be reconciled before a notebook can be described as the exact implementation that generated the paper's result tables.
+
+See the [notebook audit and retraining protocol](docs/RETRAINING_PROTOCOL.md) for the findings and next steps.
 
 ## Repository structure
 
 - `src/` — implementation code under development.
-- `docs/` — paper-based methodology, results and documentation.
+- `docs/` — paper-based methodology, results and reproducibility documentation.
 - `publications/` — publication information.
 - `future_research/` — possible extensions beyond the published study.
 
 ## Data and reproducibility
 
-The original research dataset is not included. Do not commit confidential, licensed or identifiable customer-level electricity data. The paper does not provide enough dataset provenance, preprocessing detail, split information or full training configuration to reconstruct the experiment from the publication alone. The original notebooks and experiment configuration must be reconciled before the complete workflow can be packaged for independent execution.
+The exact dataset file used for the published experiment has not yet been confirmed among the available files. A file named `Dataset_small.csv` is referenced in one code version but is not currently available for review. Another CSV has been set aside because it has not been confirmed as the paper's dataset.
 
-The current `src/train_tcn.py` file is a separate baseline implementation. It is **not** the original experiment implementation and does not implement the paper's complete Gaussian-noise, SMOTE, stratified 10-fold and Grid Search pipeline. Therefore, the results above must not be described as outputs of this current baseline script.
+The current `src/train_tcn.py` file is a separate baseline implementation. It is **not** the original experiment implementation and does not implement the paper's complete Gaussian-noise, SMOTE, stratified 10-fold and Grid Search pipeline. Therefore, the published results above must not be described as outputs of this current baseline script.
+
+A new training run may produce different metrics. Any future rerun will be recorded separately and will not overwrite the historical values reported in the IEEE paper. See [the retraining protocol](docs/RETRAINING_PROTOCOL.md).
+
+Do not commit confidential, licensed or identifiable customer-level electricity data.
 
 ## Publication
 
