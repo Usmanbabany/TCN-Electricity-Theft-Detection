@@ -1,55 +1,66 @@
-Temporal Convolutional Networks for Electricity Theft Detection With Limited Data
+# Temporal Convolutional Networks for Electricity Theft Detection With Limited Data
 
-Researcher: Usman Haruna
-Field: Computer Science, Artificial Intelligence and Machine Learning
+**Researcher:** Usman Haruna  
+**Research area:** Computer Science, temporal deep learning, electricity-theft detection
 
-Overview
+## Overview
 
-This research investigates the application of Temporal Convolutional Networks (TCNs) for electricity theft detection under limited-data conditions.
+This repository documents the research presented in the IEEE INDIACom 2025 paper *Temporal Convolutional Networks for Electricity Theft Detection with Limited Data*. The study investigates a Temporal Convolutional Network (TCN) approach for identifying suspicious electricity-consumption patterns under limited, noisy and imbalanced-data conditions.
 
-Electricity theft is a significant challenge for electricity distribution companies, contributing to non-technical losses and affecting revenue collection. Traditional data-driven detection approaches can face challenges when labelled electricity consumption data is limited.
+The repository is organised around the published paper. It distinguishes information reported in the publication from code or experiments that have been independently reproduced.
 
-This research explores the potential of temporal deep learning to identify suspicious electricity consumption patterns using limited data.
+## Published methodology
 
-Research Objectives
+The paper describes the following workflow:
 
-- Investigate TCN-based approaches for electricity theft detection.
-- Explore temporal feature extraction from electricity consumption data.
-- Examine data preprocessing and augmentation strategies.
-- Evaluate model performance using appropriate classification metrics.
-- Investigate the potential of data-efficient deep learning for electricity distribution networks.
+1. Electricity-consumption data collection.
+2. Preprocessing, including missing-value handling and normalization.
+3. Gaussian-noise injection for training-data augmentation.
+4. SMOTE to address class imbalance.
+5. TCN architecture design and training.
+6. Stratified 10-fold cross-validation.
+7. Hyperparameter tuning using Grid Search.
+8. Evaluation using accuracy, precision, recall, F1-score and ROC-AUC.
 
-Methodology
+The best hyperparameter values reported in the paper are 64 convolutional filters, kernel size 3, dropout rate 0.2 and Adam learning rate 0.001. See [the paper-based research specification](docs/IEEE_PAPER_SPECIFICATION.md).
 
-The research implementation explores:
+## Results reported in the paper
 
-1. Dataset loading and preprocessing.
-2. Data normalization.
-3. Temporal sequence generation.
-4. TCN architecture development.
-5. Model training and evaluation.
+| Metric | Imbalanced (without SMOTE) | Balanced (with SMOTE) |
+|---|---:|---:|
+| Accuracy | 89% | 97% |
+| Precision | 88% | 96% |
+| Recall | 91% | 97% |
+| F1-score | 89% | 97% |
+| ROC-AUC | 0.92 | 0.98 |
 
-Additional experimental techniques will be documented as their implementations are verified.
+These are **values reported in the published paper**, not results independently reproduced by the current repository code. See [reported results and validation notes](docs/REPORTED_RESULTS.md).
 
-Research Publication
+## Repository structure
 
-Temporal Convolutional Networks for Electricity Theft Detection with Limited Data.
+- `src/` — implementation code under development.
+- `docs/` — paper-based methodology, results and documentation.
+- `docs/figures/` — figure inventory and planned figure assets.
+- `publications/` — publication information.
+- `future_research/` — possible extensions beyond the published study.
 
-19th INDIACom, 2025 12th International Conference on Computing for Sustainable Global Development, IEEE, 2025.
+## Data and reproducibility
 
-Research Interests
+The original research dataset is not included. Do not commit confidential, licensed or identifiable customer-level electricity data. The paper does not provide enough dataset provenance, preprocessing detail, split information or full training configuration to guarantee exact reproduction from the publication alone. Those details must be confirmed from the original experiment files before any reproduction claim is made.
 
-- Temporal Deep Learning
-- Electricity Theft Detection
-- Data-Efficient Machine Learning
-- Smart Grid Analytics
-- Anomaly Detection
-- Trustworthy Artificial Intelligence
+The current `src/train_tcn.py` file is a separate baseline implementation and **is not represented as an exact reproduction** of the paper's complete Gaussian-noise, SMOTE, stratified 10-fold and Grid Search pipeline.
 
-Future Research Directions
+## Publication
 
-Potential extensions include federated learning, privacy-preserving machine learning, explainable AI and advanced data-efficient learning techniques for electricity distribution networks.
+*Temporal Convolutional Networks for Electricity Theft Detection with Limited Data.* 19th INDIACom / 12th International Conference on Computing for Sustainable Global Development, IEEE, 2025.
+
+## Research interests
+
+- Temporal deep learning
+- Data-efficient machine learning
+- Electricity theft and non-technical loss detection
+- Smart-grid analytics
+- Anomaly detection
 
 ---
-
-This repository is being developed to document the research methodology, implementation, experiments and academic contributions. Experimental results will be published with their corresponding evaluation details.
+This repository is an accompanying research and documentation resource. Please consult the published paper for the formal scholarly record.
