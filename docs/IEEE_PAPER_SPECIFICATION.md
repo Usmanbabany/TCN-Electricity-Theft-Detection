@@ -87,7 +87,7 @@ These findings concern the copies currently available for review. They do not ch
 
 A new training run may yield different results because of changes in the dataset, preprocessing, data split, random initialization, augmentation, SMOTE sampling, software versions and hardware execution. A future run will therefore be recorded as a separate rerun/re-analysis and will not replace the historical results reported in the paper.
 
-The exact original dataset is not currently available for a confirmed rerun. A code version references `Dataset_small.csv`, which is not among the files currently available for review. Another CSV was set aside because it has not been confirmed as the dataset used for the paper.
+A file named `Dataset_small.csv` has since been supplied; the filename matches a path referenced in the author's development code. The uploaded file contains 140 labelled customer records, all with `FLAG=1`, and 28 daily consumption columns. It therefore cannot support supervised binary classification by itself. Its dimensions also differ from a saved notebook output showing 9,957 rows and 367 columns. Its relationship to the final IEEE experiment dataset remains unconfirmed. See [DATASET_AUDIT.md](DATASET_AUDIT.md).
 
 A reproducible release requires the correct dataset, reconciliation of the original notebooks, recovery of missing configuration details and preservation of outputs. No missing settings will be guessed.
 
