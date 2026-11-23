@@ -6,6 +6,7 @@
 
 **Year:** 2025
 
-**Publication context:** IEEE conference publication, as reported by the researcher.
+**Publication context:** IEEE conference publication.
 
-Add the final IEEE Xplore or conference-paper URL, DOI, and complete bibliographic details after verifying them against the published paper.
+DOI: 10.23919/indiacom66777.2025.11115831
+Part of ISBN: 978-93-80544-60-1
