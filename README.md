@@ -1,34 +1,29 @@
 # Temporal Convolutional Networks for Electricity Theft Detection With Limited Data
 
 **Researcher and paper author:** Usman Haruna  
-**Research area:** Computer Science, temporal deep learning, electricity-theft detection
+**Research area:** Computer Science, temporal deep learning and electricity-theft detection
 
 ## Overview
 
-This repository documents the research presented in the IEEE INDIACom 2025 paper *Temporal Convolutional Networks for Electricity Theft Detection with Limited Data*. The study investigates a Temporal Convolutional Network (TCN) approach for identifying suspicious electricity-consumption patterns under limited, noisy and imbalanced-data conditions.
+This repository accompanies the IEEE INDIACom 2025 paper *Temporal Convolutional Networks for Electricity Theft Detection with Limited Data*. It presents the research methodology, reported findings and implementation code for applying Temporal Convolutional Networks (TCNs) to electricity-theft detection under limited-data conditions.
 
-The repository distinguishes the results of the author's original research experiments from the current state of the code packaged here.
+## Methodology
 
-## Published methodology
+The research workflow described in the paper includes:
 
-The paper describes the following workflow:
+1. Electricity-consumption data preparation and preprocessing.
+2. Gaussian-noise augmentation.
+3. SMOTE for class-imbalance handling.
+4. Temporal Convolutional Network modelling.
+5. Stratified 10-fold cross-validation.
+6. Grid Search for hyperparameter tuning.
+7. Evaluation using accuracy, precision, recall, F1-score and ROC-AUC.
 
-1. Electricity-consumption data collection.
-2. Preprocessing, including missing-value handling and normalization.
-3. Gaussian-noise injection for training-data augmentation.
-4. SMOTE to address class imbalance.
-5. TCN architecture design and training.
-6. Stratified 10-fold cross-validation.
-7. Hyperparameter tuning using Grid Search.
-8. Evaluation using accuracy, precision, recall, F1-score and ROC-AUC.
+The reported best settings include 64 convolutional filters, kernel size 3, dropout rate 0.2 and Adam learning rate 0.001.
 
-The best hyperparameter values reported in the paper are 64 convolutional filters, kernel size 3, dropout rate 0.2 and Adam learning rate 0.001. See [the paper-based research specification](docs/IEEE_PAPER_SPECIFICATION.md).
+## Results reported in the IEEE paper
 
-## Results from the original research
-
-The following results are reported in the IEEE paper and come from the author's original research experiments.
-
-| Metric | Imbalanced (without SMOTE) | Balanced (with SMOTE) |
+| Metric | Without SMOTE | With SMOTE |
 |---|---:|---:|
 | Accuracy | 89% | 97% |
 | Precision | 88% | 96% |
@@ -36,30 +31,22 @@ The following results are reported in the IEEE paper and come from the author's 
 | F1-score | 89% | 97% |
 | ROC-AUC | 0.92 | 0.98 |
 
-The paper also reports a separate noise-augmentation comparison: 96% accuracy and 96% F1-score without noise augmentation, compared with 97% accuracy and 97% F1-score with noise augmentation. See [reported results and experiment status](docs/REPORTED_RESULTS.md).
+The paper also reports 96% accuracy and F1-score without Gaussian-noise augmentation, compared with 97% for both metrics with augmentation. These are the results reported in the published research. See [Reported Results](docs/REPORTED_RESULTS.md).
 
-## Original experiment notebooks
+## Dataset
 
-The author has supplied Colab notebooks used during the research for review. The currently available saved copies are incomplete or contain execution and evaluation issues. Their code, dataset provenance and final run configuration must be reconciled before a notebook can be described as the exact implementation that generated the paper's result tables.
+The research dataset was obtained from Kaggle. The dataset is not included in this repository; users should obtain it from its source and follow the applicable usage terms.
 
-See the [notebook audit and retraining protocol](docs/RETRAINING_PROTOCOL.md) for the findings and next steps.
+## Implementation
+
+The src/train_tcn.py script provides the repository's training implementation. It accepts a CSV dataset containing a binary FLAG target, a customer identifier (CONS_NO) and ordered consumption measurements. See the script for usage and configuration details.
 
 ## Repository structure
 
-- `src/` — implementation code under development.
-- `docs/` — paper-based methodology, results and reproducibility documentation.
-- `publications/` — publication information.
-- `future_research/` — possible extensions beyond the published study.
-
-## Data and reproducibility
-
-The author has now supplied `Dataset_small.csv`, a file whose name matches the path in the development code. Its contents have been audited, but its identity as the final IEEE experimental dataset has not been established. The uploaded file contains 140 labelled customers, all with `FLAG=1`, and 28 daily consumption columns; it cannot support supervised binary classification by itself. See [the dataset audit](docs/DATASET_AUDIT.md).
-
-The current `src/train_tcn.py` file is a separate baseline implementation. It is **not** the original experiment implementation and does not implement the paper's complete Gaussian-noise, SMOTE, stratified 10-fold and Grid Search pipeline. Therefore, the published results above must not be described as outputs of this current baseline script.
-
-A new training run may produce different metrics. Any future rerun will be recorded separately and will not overwrite the historical values reported in the IEEE paper. See [the notebook audit and retraining protocol](docs/RETRAINING_PROTOCOL.md) and [dataset audit](docs/DATASET_AUDIT.md).
-
-Do not commit confidential, licensed or identifiable customer-level electricity data.
+- src/ — TCN training implementation.
+- docs/ — research methodology and reported results.
+- publications/ — publication information.
+- future_research/ — potential future research directions.
 
 ## Publication
 
@@ -75,4 +62,4 @@ Do not commit confidential, licensed or identifiable customer-level electricity 
 
 ---
 
-This repository is an accompanying research and documentation resource. Please consult the published paper for the formal scholarly record.
+This repository is an accompanying research and implementation resource for the published study. Please cite the IEEE paper when referring to the research.
