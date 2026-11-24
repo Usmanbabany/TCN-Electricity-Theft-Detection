@@ -44,9 +44,10 @@ The src/train_tcn.py script provides the repository's training implementation. I
 ## Repository structure
 
 - src/ — TCN training implementation.
-- docs/ — research methodology and reported results.
+- docs/ — IEEE paper specification and Reported Result.
 - publications/ — publication information.
 - future_research/ — potential future research directions.
+- documentation/ — data privacy, methodology, reproducibility and status, research background and TCN architecture.
 
 ## Publication
 
